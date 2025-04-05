@@ -1,41 +1,35 @@
-# Goose Demo Application
+# Kid's Learning Assistant
 
 Version 3
 
-## About
-Goose is a general-purpose AI agent created by Block, the parent company of Square, CashApp, and Tidal. This project is being developed as an open-source software initiative.
+## アプリケーションの概要
+Kid's Learning Assistantは、子供向けの対話型学習支援アプリケーションです。Streamlitを使用したWebインターフェースと、Ollama経由でGemma言語モデルを活用して、子供たちの質問に優しく回答します。
 
-## Features
-- **Multi-Model Support**: Compatible with various language models (gpt-4o, claude-3.5-sonnet, o1, llama-3.2, deepseek-r1, etc.)
-- **Dynamic Extensions**: Can plug into new extensions and learn how to use them
-- **Tool Integration**: Solves higher level problems using tools from multiple extensions
-- **Memory Management**: Stores and retrieves categorized information with tagging support
+## 主な機能
+- 🌟 対話型インターフェース：チャット形式で簡単に質問できます
+- 💬 履歴管理：会話の履歴を保持し、学習の流れを追跡できます
+- 🤖 AI応答：Gemma 1Bモデルを使用した子供向けの優しい回答
+- 🎨 ユーザーフレンドリーなUI：Streamlitによる直感的なデザイン
 
-## Extensions
-### Developer Extension
-- Code file editing capabilities
-- Shell command execution
-- Visual debugging tools
+## 技術スタック
+- **フロントエンド**: Streamlit
+- **バックエンド**: Python
+- **AI Model**: Gemma 1B (via Ollama)
 
-### Computer Controller Extension
-- Web scraping and data processing
-- System automation
-- File management
-- Desktop environment control
+## 使用方法
+1. アプリケーションを起動すると、明るい挨拶メッセージが表示されます
+2. チャット入力欄に質問を入力します
+3. AIアシスタントが子供向けにわかりやすく回答します
+4. 会話履歴は自動的に保存され、画面に表示されます
 
-### Memory Extension
-- Stores categorized information
-- Supports tagging for easy retrieval
-- Local and global memory storage
-- Systematic information management
+## 実装の特徴
+- セッション管理による会話履歴の保持
+- エラーハンドリングによる安定した動作
+- ストリーミング機能のサポート（現在は無効化）
+- 子供向けの親しみやすいUIデザイン
 
-### Tutorial Extension
-- Interactive learning support
-- Step-by-step guidance
-- Available tutorials for different features
-
-### GitHub Extension
-- Complete GitHub integration
-- Repository management
-- Issue and PR handling
-- Code and file management
+## 必要条件
+- Python 3.x
+- Streamlit
+- Ollama
+- Gemma 1Bモデル
