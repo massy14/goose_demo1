@@ -1,29 +1,51 @@
 import streamlit as st
+import ollama
+
+def init_chat_history():
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+def get_llm_response(prompt):
+    try:
+        response = ollama.chat(
+            model='gemma3:1b',
+            messages=[{'role': 'user', 'content': prompt}],
+            stream=False
+        )
+        return response['message']['content']
+    except Exception as e:
+        st.error(f"エラーが発生しました: {str(e)}")
+        return None
 
 def main():
     st.title("🌟 Kid's Learning Assistant 🌟")
     
+    # Initialize chat history
+    init_chat_history()
+    
     # Add a friendly welcome message
     st.write("こんにちは！一緒に楽しく学びましょう！")
     
-    # Create a text input for the child's question
-    user_input = st.text_input("質問を入力してね！", "")
+    # Display chat history
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
     
-    if user_input:
-        # Add some fun responses
-        if "こんにちは" in user_input:
-            st.write("こんにちは！今日も一緒に楽しく勉強しよう！")
-        elif "算数" in user_input:
-            st.write("算数は楽しいよ！一緒に考えてみよう！")
-        elif "理科" in user_input:
-            st.write("自然や科学について学ぶのは面白いね！")
-        else:
-            st.write("なるほど！それについて一緒に考えてみようか！")
+    # Create a text input for the child's question
+    if prompt := st.chat_input("質問を入力してね！"):
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
         
-        # Add a fun fact section
-        st.write("---")
-        st.write("📚 今日の豆知識:")
-        st.write("宇宙には数え切れないほどの星があるんだ！")
+        # Display user message
+        with st.chat_message("user"):
+            st.markdown(prompt)
+        
+        # Get and display assistant response
+        with st.chat_message("assistant"):
+            response = get_llm_response(prompt)
+            if response:
+                st.markdown(response)
+                st.session_state.messages.append({"role": "assistant", "content": response})
 
 if __name__ == "__main__":
     main()
