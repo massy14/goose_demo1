@@ -1,6 +1,6 @@
 # Kid's Learning Assistant
 
-Version 4
+Version 5
 
 ## アプリケーションの概要
 Kid's Learning Assistantは、子供向けの対話型学習支援アプリケーションです。Streamlitを使用したWebインターフェースと、Ollama経由でGemma言語モデルを活用して、子供たちの質問に優しく回答します。
